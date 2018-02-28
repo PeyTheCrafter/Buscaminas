@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UI extends JFrame {
 
@@ -17,6 +19,7 @@ public class UI extends JFrame {
 	protected Botonera botonera;
 
 	protected int lado = 14;
+	protected JMenuItem mntmNuevoJuego;
 
 	/**
 	 * Create the frame.
@@ -48,7 +51,8 @@ public class UI extends JFrame {
 		JMenu mnJuego = new JMenu("Juego");
 		menuBar.add(mnJuego);
 
-		JMenuItem mntmNuevoJuego = new JMenuItem("Nuevo juego.");
+		mntmNuevoJuego = new JMenuItem("Nuevo juego");
+
 		mnJuego.add(mntmNuevoJuego);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

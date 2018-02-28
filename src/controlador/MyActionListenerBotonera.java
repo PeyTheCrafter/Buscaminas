@@ -29,10 +29,26 @@ public class MyActionListenerBotonera implements ActionListener {
 		this.paraUI.actualizarVentana();
 	}
 
+	/**
+	 * Comprueba si una casilla es una mina
+	 * 
+	 * @param x
+	 *            coordenada x
+	 * @param y
+	 *            coordenada y
+	 * @return true si la casilla es una mina, false si no
+	 */
 	private boolean comprobarMina(int x, int y) {
 		return this.game.tablero[x][y].isMina();
 	}
 
+	/**
+	 * Interpreta las coordenadas recibidas en un String
+	 * 
+	 * @param cadena
+	 *            String con las coordenadas.
+	 * @return array con las coordenadas separadas
+	 */
 	private int[] interpretarCoordenadas(String cadena) {
 		String coord[] = cadena.split("-");
 		int coordenadas[] = new int[2];

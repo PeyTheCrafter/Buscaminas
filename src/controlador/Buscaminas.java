@@ -12,15 +12,30 @@ public class Buscaminas {
 		this.lado = lado;
 		this.tablero = new Casilla[this.lado][this.lado];
 		this.minas = minas;
+		crearTablero();
 		iniciarJuego();
 	}
 
-	private void iniciarJuego() {
-		crearTablero();
+	public void iniciarJuego() {
 		colocarMinas();
 		establecerNumeroMinas();
 	}
 
+	/**
+	 * Limpia el tablero velando las casillas y eliminando las minas.
+	 */
+	public void limpiarTablero() {
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero.length; j++) {
+				this.tablero[i][j].setMina(false);
+				this.tablero[i][j].setVelada(true);
+			}
+		}
+	}
+
+	/**
+	 * Coloca las minas en posiciones aleatorias.
+	 */
 	private void colocarMinas() {
 		for (int i = 0; i < minas; i++) {
 			int x = (int) (Math.random() * this.tablero.length);
@@ -29,6 +44,9 @@ public class Buscaminas {
 		}
 	}
 
+	/**
+	 * Crea el tablero de juego.
+	 */
 	private void crearTablero() {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
@@ -37,6 +55,14 @@ public class Buscaminas {
 		}
 	}
 
+	/**
+	 * Recorre de forma recursiva el tablero.
+	 * 
+	 * @param x
+	 *            coordenada x de origen.
+	 * @param y
+	 *            coordenada y de origen.
+	 */
 	public void recorrer(int x, int y) {
 		this.tablero[x][y].setVelada(false);
 		for (int i = x - 1; i <= x + 1; i++) {
@@ -52,8 +78,17 @@ public class Buscaminas {
 		}
 	}
 
-	private boolean comprobarRango(int i, int j) {
-		return i >= 0 && i < this.tablero.length && j >= 0 && j < this.tablero.length;
+	/**
+	 * Comprueba que una casilla esté dentro del rango del tablero.
+	 * 
+	 * @param x
+	 *            coordenada x.
+	 * @param y
+	 *            coordenada y.
+	 * @return true si está dentro del rango, false si no.
+	 */
+	private boolean comprobarRango(int x, int y) {
+		return x >= 0 && x < this.tablero.length && y >= 0 && y < this.tablero.length;
 	}
 
 	/**
@@ -97,24 +132,4 @@ public class Buscaminas {
 		}
 		return minas;
 	}
-
-	/**
-	 * Muestra el tablero por consola.
-	 * 
-	 * @param tablero
-	 *            tablero de juego.
-	 */
-	public void mostrarTablero() {
-		for (int i = 0; i < this.tablero.length; i++) {
-			for (int j = 0; j < this.tablero.length; j++) {
-				if (this.tablero[i][j].isMina()) {
-					System.out.print("# ");
-				} else {
-					System.out.print(this.tablero[i][j].getNumeroMinas() + " ");
-				}
-			}
-			System.out.println();
-		}
-	}
-
 }
