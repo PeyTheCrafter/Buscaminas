@@ -20,9 +20,17 @@ public class MyActionListenerBotonera implements ActionListener {
 		JButton boton = (JButton) e.getSource();
 		String name = boton.getName();
 		int[] coordenadas = interpretarCoordenadas(name);
-		System.out.println(coordenadas[0] + " " + coordenadas[1]);
-		this.game.recorrer(coordenadas[0], coordenadas[1]);
+		if (comprobarMina(coordenadas[0], coordenadas[1])) {
+			//TODO: perder.
+			System.out.println("Has perdido");
+		} else {
+			this.game.recorrer(coordenadas[0], coordenadas[1]);
+		}
 		this.paraUI.actualizarVentana();
+	}
+
+	private boolean comprobarMina(int x, int y) {
+		return this.game.tablero[x][y].isMina();
 	}
 
 	private int[] interpretarCoordenadas(String cadena) {

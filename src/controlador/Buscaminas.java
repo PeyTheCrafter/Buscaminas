@@ -38,16 +38,22 @@ public class Buscaminas {
 	}
 
 	public void recorrer(int x, int y) {
+		this.tablero[x][y].setVelada(false);
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
-				if (i >= 0 && i < this.tablero.length && j >= 0 && j < this.tablero.length) {
-					if (this.tablero[i][j].getNumeroMinas() == 0) {
-						this.tablero[i][j].setVelada(false);
+				if (comprobarRango(i, j)) {
+					if (this.tablero[i][j].getNumeroMinas() == 0 && this.tablero[i][j].isVelada()) {
 						recorrer(i, j);
+					} else {
+						this.tablero[i][j].setVelada(false);
 					}
 				}
 			}
 		}
+	}
+
+	private boolean comprobarRango(int i, int j) {
+		return i >= 0 && i < this.tablero.length && j >= 0 && j < this.tablero.length;
 	}
 
 	/**
@@ -79,7 +85,7 @@ public class Buscaminas {
 		int minas = 0;
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
-				if (i >= 0 && i < this.tablero.length && j >= 0 && j < this.tablero.length) {
+				if (comprobarRango(i, j)) {
 					if (this.tablero[i][j].isMina()) {
 						minas++;
 					}
@@ -98,7 +104,7 @@ public class Buscaminas {
 	 * @param tablero
 	 *            tablero de juego.
 	 */
-	private void mostrarTablero() {
+	public void mostrarTablero() {
 		for (int i = 0; i < this.tablero.length; i++) {
 			for (int j = 0; j < this.tablero.length; j++) {
 				if (this.tablero[i][j].isMina()) {
