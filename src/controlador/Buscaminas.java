@@ -18,6 +18,7 @@ public class Buscaminas {
 	private void iniciarJuego() {
 		crearTablero();
 		colocarMinas();
+		establecerNumeroMinas();
 	}
 
 	private void colocarMinas() {
@@ -36,7 +37,7 @@ public class Buscaminas {
 		}
 	}
 
-	private void recorrer(int x, int y) {
+	public void recorrer(int x, int y) {
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
 				if (i >= 0 && i < this.tablero.length && j >= 0 && j < this.tablero.length) {

@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class MyActionListenerBotonera implements ActionListener {
-	protected ParaUI paraUI;
-	protected Buscaminas game;
+	ParaUI paraUI;
+	Buscaminas game;
 
 	public MyActionListenerBotonera(ParaUI paraUI, Buscaminas game) {
+		super();
 		this.paraUI = paraUI;
 		this.game = game;
 	}
@@ -19,6 +20,9 @@ public class MyActionListenerBotonera implements ActionListener {
 		JButton boton = (JButton) e.getSource();
 		String name = boton.getName();
 		int[] coordenadas = interpretarCoordenadas(name);
+		System.out.println(coordenadas[0] + " " + coordenadas[1]);
+		this.game.recorrer(coordenadas[0], coordenadas[1]);
+		this.paraUI.actualizarVentana();
 	}
 
 	private int[] interpretarCoordenadas(String cadena) {

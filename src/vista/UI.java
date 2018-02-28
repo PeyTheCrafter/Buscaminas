@@ -36,7 +36,7 @@ public class UI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel botonera = new Botonera(this.lado);
+		botonera = new Botonera(this.lado);
 		contentPane.add(botonera, BorderLayout.CENTER);
 	}
 }
