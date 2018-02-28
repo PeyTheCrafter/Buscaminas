@@ -16,13 +16,16 @@ public class Buscaminas {
 		iniciarJuego();
 	}
 
+	/**
+	 * Coloca las minas y calcula cuántas minas tiene cada casilla a su alrededor.
+	 */
 	public void iniciarJuego() {
 		colocarMinas();
 		establecerNumeroMinas();
 	}
 
 	/**
-	 * Limpia el tablero velando las casillas y eliminando las minas.
+	 * Vela las casillas y elimina todas las minas.
 	 */
 	public void limpiarTablero() {
 		for (int i = 0; i < tablero.length; i++) {
@@ -34,7 +37,7 @@ public class Buscaminas {
 	}
 
 	/**
-	 * Coloca las minas en posiciones aleatorias.
+	 * Coloca las minas en posiciones aleatorias del tablero..
 	 */
 	private void colocarMinas() {
 		for (int i = 0; i < minas; i++) {
@@ -45,7 +48,7 @@ public class Buscaminas {
 	}
 
 	/**
-	 * Crea el tablero de juego.
+	 * Crea y rellena el tablero de juego con Casillas.
 	 */
 	private void crearTablero() {
 		for (int i = 0; i < tablero.length; i++) {
@@ -56,7 +59,8 @@ public class Buscaminas {
 	}
 
 	/**
-	 * Recorre de forma recursiva el tablero.
+	 * Recorre de forma recursiva el tablero, comprobando los alrededores de
+	 * aquellas casillas vacías.
 	 * 
 	 * @param x
 	 *            coordenada x de origen.
@@ -106,14 +110,15 @@ public class Buscaminas {
 	}
 
 	/**
-	 * Cuenta las minas existentes alrededor de una casilla.
+	 * Cuenta las minas existentes alrededor de una casilla. Resta una al resultado
+	 * en caso de que la casilla a comprobar sea una mina.
 	 * 
 	 * @param tablero
 	 *            tablero de juego.
 	 * @param x
-	 *            coordenada x de la casilla.
+	 *            coordenada x de la casilla a comprobar.
 	 * @param y
-	 *            coordenada y de la casilla.
+	 *            coordenada y de la casilla a comprobar.
 	 * @return el número de minas encontradas alrededor de la casilla.
 	 */
 	private int contarMinas(int x, int y) {

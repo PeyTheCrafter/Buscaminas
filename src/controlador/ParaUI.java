@@ -33,19 +33,22 @@ public class ParaUI extends UI {
 
 	/**
 	 * Actualiza la información de la ventana en función del tipo de casilla que es
-	 * y del número de minas que hay a su alrededor.
+	 * y del número de minas que hay a su alrededor:<br>
+	 * -Para casillas con 0 minas a su alrededor desactiva el botón.<br>
+	 * -Para casillas con más de 0 minas a su alrededor, muestra el número de minas
+	 * que tiene.
 	 */
 	protected void actualizarVentana() {
 		for (int i = 0; i < this.game.tablero.length; i++) {
 			for (int j = 0; j < this.game.tablero.length; j++) {
 				// Para las casillas desveladas.
-				if (!this.game.tablero[i][j].isVelada()) {
+				if (!this.game.tablero[i][j].isVelada() && !this.game.tablero[i][j].isMina()) {
 					// Desactivar los botones que no sean minas y tengan alguna mina alrededor.
-					if (this.game.tablero[i][j].getNumeroMinas() == 0 && !this.game.tablero[i][j].isMina()) {
+					if (this.game.tablero[i][j].getNumeroMinas() == 0) {
 						cambiarVisibilidadBotones(i, j, false);
 					}
 					// Si no es una mina y tiene como mínimo una mina a su alrededor.
-					if (!this.game.tablero[i][j].isMina() && this.game.tablero[i][j].getNumeroMinas() > 0) {
+					if (this.game.tablero[i][j].getNumeroMinas() > 0) {
 						this.botonera.botones[i][j].setText(String.valueOf(this.game.tablero[i][j].getNumeroMinas()));
 					}
 				}
@@ -57,11 +60,11 @@ public class ParaUI extends UI {
 	 * Cambia la visibilidad del botón seleccionado a la deseada.
 	 * 
 	 * @param i
-	 *            coordenadas del boton
+	 *            coordenadas del botón.
 	 * @param j
-	 *            coordenadas del boton
+	 *            coordenadas del botón.
 	 * @param estado
-	 *            nuevo estado del boton
+	 *            nuevo estado del botón.
 	 */
 	protected void cambiarVisibilidadBotones(int i, int j, boolean estado) {
 		this.botonera.botones[i][j].setEnabled(estado);
@@ -82,7 +85,7 @@ public class ParaUI extends UI {
 	}
 
 	/**
-	 * Reinicia los botones.
+	 * Elimina el texto de los botones y elimina el color de fondo.
 	 */
 	protected void limpiarBotones() {
 		for (int i = 0; i < this.lado; i++) {
