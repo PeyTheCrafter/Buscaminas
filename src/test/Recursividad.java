@@ -15,18 +15,29 @@ public class Recursividad {
 		tablero[5][6].setMina(true);
 		Recursividad instancia = new Recursividad();
 		instancia.establecerNumeroMinas(tablero);
+		instancia.recorrer(tablero, 0, 0);
 		instancia.mostrarTablero(tablero);
 	}
 
-	// private void recorrer(Casilla[][] tablero) {
-	// for (int i = 0; i < tablero.length; i++) {
-	// for (int j = 0; j < tablero.length; j++) {
-	// if (i >= 0 && i < tablero.length && j >= 0 && j < tablero.length) {
-	// if (tablero[i][j].getNumeroMinas())
-	// }
-	// }
-	// }
-	// }
+	private void recorrer(Casilla[][] tablero, int x, int y) {
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero.length; j++) {
+				// Empieza la recursividad
+				for (int m = x - 1; m <= x + 1; m++) {
+					for (int n = y - 1; n <= y + 1; n++) {
+						System.out.println("Rec: " + i + ", " + j + ", " + m + ", " + n);
+						if (m >= 0 && m < tablero.length && n >= 0 && n < tablero.length) {
+							if (tablero[m][n].getNumeroMinas() == 0) {
+								tablero[m][n].setVelada(false);
+								tablero[m][n].setNumeroMinas(9);
+								recorrer(tablero, m, n);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * Recorre el tablero y establece el número de minas que tiene cada casilla.
