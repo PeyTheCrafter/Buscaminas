@@ -21,7 +21,7 @@ public class MyActionListenerBotonera implements ActionListener {
 		String name = boton.getName();
 		int[] coordenadas = interpretarCoordenadas(name);
 		if (comprobarMina(coordenadas[0], coordenadas[1])) {
-			//TODO: perder.
+			paraUI.finalizarJuego();
 			System.out.println("Has perdido");
 		} else {
 			this.game.recorrer(coordenadas[0], coordenadas[1]);

@@ -5,8 +5,8 @@ import java.awt.Color;
 import vista.UI;
 
 public class ParaUI extends UI {
-	protected int lado = 10;
-	protected int minas = 10;
+	protected int lado = 14;
+	protected int minas = 25;
 	Buscaminas game = new Buscaminas(this.lado, this.minas);
 	MyActionListenerBotonera listenerBotonera = new MyActionListenerBotonera(this, game);
 
@@ -33,21 +33,36 @@ public class ParaUI extends UI {
 			for (int j = 0; j < this.game.tablero.length; j++) {
 				// Para las casillas desveladas.
 				if (!this.game.tablero[i][j].isVelada()) {
-					// Desactivar los botones con 0 minas a su alrededor.
-					if (this.game.tablero[i][j].getNumeroMinas() == 0) {
-						this.botonera.botones[i][j].setEnabled(false);
+					// Desactivar los botones que no sean minas y tengan alguna mina alrededor.
+					if (this.game.tablero[i][j].getNumeroMinas() == 0 && !this.game.tablero[i][j].isMina()) {
+						desactivarBoton(i, j);
 					}
 					// Si no es una mina y tiene como mínimo una mina a su alrededor.
 					if (!this.game.tablero[i][j].isMina() && this.game.tablero[i][j].getNumeroMinas() > 0) {
 						this.botonera.botones[i][j].setText(String.valueOf(this.game.tablero[i][j].getNumeroMinas()));
 					}
 				}
+			}
+		}
+		this.game.mostrarTablero();
+	}
+
+	private void desactivarBoton(int i, int j) {
+		this.botonera.botones[i][j].setEnabled(false);
+	}
+
+	/**
+	 * Muestra las minas y desactiva todos los botones.
+	 */
+	public void finalizarJuego() {
+		for (int i = 0; i < this.game.tablero.length; i++) {
+			for (int j = 0; j < this.game.tablero.length; j++) {
+				desactivarBoton(i, j);
 				if (this.game.tablero[i][j].isMina()) {
 					this.botonera.botones[i][j].setBackground(Color.RED);
 				}
 			}
 		}
-		this.game.mostrarTablero();
 	}
 
 }
