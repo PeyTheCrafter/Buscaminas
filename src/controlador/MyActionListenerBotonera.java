@@ -6,6 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class MyActionListenerBotonera implements ActionListener {
+	protected ParaUI paraUI;
+	protected Buscaminas game;
+
+	public MyActionListenerBotonera(ParaUI paraUI, Buscaminas game) {
+		this.paraUI = paraUI;
+		this.game = game;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -8,12 +8,14 @@ import javax.swing.JButton;
 
 public class Botonera extends JPanel {
 	protected int lado;
+	public JButton botones[][];
 
 	/**
 	 * Create the panel.
 	 */
 	public Botonera(int lado) {
 		this.lado = lado;
+		this.botones = new JButton[this.lado][this.lado];
 		setLayout(new GridLayout(this.lado, this.lado, 0, 0));
 		crearBotones();
 	}
@@ -21,12 +23,10 @@ public class Botonera extends JPanel {
 	private void crearBotones() {
 		for (int i = 0; i < this.lado; i++) {
 			for (int j = 0; j < this.lado; j++) {
-				JButton boton = new JButton();
-				boton.setName(i + "-" + j);
-				boton.setOpaque(true);
-//				boton.setBackground(new Color((int) (Math.random() * 255), (int) (Math.random() * 255),
-//						(int) (Math.random() * 255)));
-				this.add(boton);
+				this.botones[i][j] = new JButton();
+				this.botones[i][j].setName(i + "-" + j);
+				this.botones[i][j].setOpaque(true);
+				this.add(this.botones[i][j]);
 			}
 		}
 	}

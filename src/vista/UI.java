@@ -5,18 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.MyActionListenerBotonera;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import java.awt.GridLayout;
 
 public class UI extends JFrame {
 
 	private JPanel contentPane;
 	protected Botonera botonera;
-	protected MyActionListenerBotonera listenerBotonera = new MyActionListenerBotonera();
 
 	protected int lado = 10;
 
@@ -43,5 +39,4 @@ public class UI extends JFrame {
 		JPanel botonera = new Botonera(this.lado);
 		contentPane.add(botonera, BorderLayout.CENTER);
 	}
-
 }
