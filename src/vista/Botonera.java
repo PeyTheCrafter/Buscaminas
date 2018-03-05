@@ -27,6 +27,8 @@ public class Botonera extends JPanel {
 				this.botones[i][j].setName(i + "-" + j);
 				this.botones[i][j].setOpaque(true);
 				this.botones[i][j].setFont(new Font("Tahoma", 0, 9));
+				this.botones[i][j].setFocusPainted(false);
+				this.botones[i][j].setFocusable(false);
 				this.add(this.botones[i][j]);
 			}
 		}
