@@ -2,6 +2,7 @@ package modelo;
 
 public class Casilla {
 	private boolean velada = true;
+	private boolean marcada = false;
 	private boolean mina;
 	private int numeroMinas = 0;
 	private int posX;
@@ -11,6 +12,14 @@ public class Casilla {
 		super();
 		this.posX = posX;
 		this.posY = posY;
+	}
+
+	public boolean isMarcada() {
+		return marcada;
+	}
+
+	public void setMarcada(boolean marcada) {
+		this.marcada = marcada;
 	}
 
 	public boolean isVelada() {
