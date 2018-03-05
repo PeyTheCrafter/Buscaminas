@@ -12,9 +12,9 @@ public class ParaUI extends UI {
 	Buscaminas game = new Buscaminas(this.lado, this.minas);
 	MyActionListenerBotonera listenerBotonera = new MyActionListenerBotonera(this, game);
 	MyActionListenerNuevoJuego listenerNuevoJuego = new MyActionListenerNuevoJuego(this, game);
-
 	public ParaUI() {
 		super();
+		this.lado = 10;
 		actualizarVentana();
 		añadirListenerBotonera();
 		mntmNuevoJuego.addActionListener(listenerNuevoJuego);

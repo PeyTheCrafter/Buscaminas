@@ -7,6 +7,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
+import controlador.ParaUI;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -18,7 +20,7 @@ public class UI extends JFrame {
 	private JPanel contentPane;
 	protected Botonera botonera;
 
-	protected int lado = 14;
+	protected int lado;
 	protected JMenuItem mntmNuevoJuego;
 
 	/**
